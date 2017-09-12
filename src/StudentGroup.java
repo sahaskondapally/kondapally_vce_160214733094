@@ -202,7 +202,7 @@ public class StudentGroup implements StudentArrayOperation {
 		for(int i=0;i<this.students.length-1;i++)
 		{
 			Date d=students[i].getBirthDate();
-			if(d.compareTo(date)<0)
+			if(d.compareTo(date)<=0)
 				{
 				s[j]=students[i];
 				j++;
@@ -214,8 +214,22 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public Student[] getBetweenBirthDates(Date firstDate, Date lastDate) {
+		Student[] s=new Student[this.students.length-1];
+		int j=0;
+		for(int i=0;i<this.students.length-1;i++)
+		{
+			Date d=students[i].getBirthDate();
+			if(d.compareTo(firstDate)>0&& d.compareTo(lastDate)<0)
+				{
+				s[j]=students[i];
+				j++;
+				}
+		}
+		s=Arrays.copyOfRange(s, 0,j );
+		return s;
+		
 		// Add your implementation here
-		return null;
+		
 	}
 
 	@Override
